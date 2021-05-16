@@ -35,7 +35,7 @@ public class HelloController {
         return "Hello " + name +"!";
     }
     // Also know that you can redirect a user by removing the @ResponseBody annotation
-    // from the controller and returning "redirect:/(DESIRED PATH GOES HERE)".
+    // from the controller and returning "redirect:/(DESIREDPATH)".
 
 
     // lives at /hello/form
