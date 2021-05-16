@@ -24,10 +24,10 @@ public class HelloController {
 
     // Handles request of the form /hello?name=LaunchCode
     // lives at /hello/hello
-    @RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
-    public String helloWithQueryParam(@RequestParam String name){
-        return "Hello " + name + "!";
-    }
+//    @RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
+//    public String helloWithQueryParam(@RequestParam String name, @RequestParam String value){
+//            return "Hello " + name + "!";
+//    }
 
     // Handles requests of the form /hello/LaunchCode
     @GetMapping ("{name}")
@@ -38,6 +38,22 @@ public class HelloController {
     // from the controller and returning "redirect:/(DESIREDPATH)".
 
 
+    @RequestMapping(method={RequestMethod.GET, RequestMethod.POST}, value = "hello")
+    public String createMessage(@RequestParam String name, @RequestParam String language){
+        if (language.equals("Fr")) {
+            return "Bonjour " + name + "!";
+        } else if (language.equals("Sp")) {
+            return "Hola " + name + "!";
+        } else if (language.equals("Ge")) {
+            return "Hallo " + name + "!";
+        } else if (language.equals("Ch")) {
+            return "Ni hao " + name + "!";
+        } else {
+            return "Hello " + name + "!";
+        }
+
+    }
+
     // lives at /hello/form
     @GetMapping ("form")
     public String helloForm(){
@@ -45,6 +61,12 @@ public class HelloController {
                 "<body>" +
                 "<form action='hello' method='post'>" + // submits request to /hello
                 "<input type='text' name='name'>" +
+                "<select name='language'>" +
+                "<option value='En'> English </option>" +
+                "<option value='Fr'> French </option>" +
+                "<option value='Sp'> Spanish </option>" +
+                "<option value='Ge'> German </option>" +
+                "<option value='Ch'> Chinese </option>" +
                 "<input type='submit' value='Greet me!'>" +
                 "</form?" +
                 "</body>" +
