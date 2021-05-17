@@ -40,18 +40,24 @@ public class HelloController {
 
     @RequestMapping(method={RequestMethod.GET, RequestMethod.POST}, value = "hello")
     public String createMessage(@RequestParam String name, @RequestParam String language){
-        if (language.equals("Fr")) {
-            return "Bonjour " + name + "!";
-        } else if (language.equals("Sp")) {
-            return "Hola " + name + "!";
-        } else if (language.equals("Ge")) {
-            return "Hallo " + name + "!";
-        } else if (language.equals("Ch")) {
-            return "Ni hao " + name + "!";
-        } else {
-            return "Hello " + name + "!";
+        if(name == null){
+            name = "World";
         }
 
+        String greeting = "";
+
+        if (language.equals("Fr")) {
+            greeting = "Bonjour, ";
+        } else if (language.equals("Sp")) {
+            greeting = "Hola, ";
+        } else if (language.equals("Ge")) {
+            greeting = "Hallo, ";
+        } else if (language.equals("Ch")) {
+            greeting = "Ni hao, ";
+        } else if (language.equals("En")){
+            greeting = "Hello ";
+        }
+        return greeting + name;
     }
 
     // lives at /hello/form
@@ -67,10 +73,23 @@ public class HelloController {
                 "<option value='Sp'> Spanish </option>" +
                 "<option value='Ge'> German </option>" +
                 "<option value='Ch'> Chinese </option>" +
+                "</select>" +
                 "<input type='submit' value='Greet me!'>" +
                 "</form?" +
                 "</body>" +
                 "</html>";
     }
+
+//    @RequestMapping(method = RequestMethod.POST)
+//    public String createMessage(@RequestParam String name,@RequestParam String language){
+//        if (name == null){
+//            name = "World";
+//        }
+//
+//        String greeting = "";
+//
+//        if(language)
+//    }
+
 
 }
