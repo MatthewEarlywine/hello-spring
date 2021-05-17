@@ -57,7 +57,7 @@ public class HelloController {
         } else if (language.equals("En")){
             greeting = "Hello ";
         }
-        return greeting + name;
+        return "<p style='color:blue; text-align:center; margin-top:28px; font-size:38px'>" + greeting + name + "</p>";
     }
 
     // lives at /hello/form
