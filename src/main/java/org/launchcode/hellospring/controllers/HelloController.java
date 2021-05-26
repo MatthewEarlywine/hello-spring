@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@ResponseBody
+
 @RequestMapping("hello")
 public class HelloController {
 
@@ -18,6 +18,7 @@ public class HelloController {
     //responds to GET requests at "/goodbye"
     //now lives at /hello/goodbye
     @GetMapping ("goodbye")
+    @ResponseBody
     public String goodbye(){
         return "Goodbye, Spring!";
     }
@@ -25,12 +26,14 @@ public class HelloController {
     // Handles request of the form /hello?name=LaunchCode
     // lives at /hello/hello
     @RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
     public String helloWithQueryParam(@RequestParam String name){
         return "Hello " + name + "!";
     }
 
     // Handles requests of the form /hello/LaunchCode
     @GetMapping ("{name}")
+    @ResponseBody
     public String helloWithPathParam(@PathVariable String name){
         return "Hello " + name +"!";
     }
@@ -41,14 +44,7 @@ public class HelloController {
     // lives at /hello/form
     @GetMapping ("form")
     public String helloForm(){
-        return "<html>" +
-                "<body>" +
-                "<form action='hello' method='post'>" + // submits request to /hello
-                "<input type='text' name='name'>" +
-                "<input type='submit' value='Greet me!'>" +
-                "</form?" +
-                "</body>" +
-                "</html>";
+        return "form";
     }
 
 }
