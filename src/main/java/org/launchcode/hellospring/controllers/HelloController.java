@@ -4,8 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-
-@RequestMapping("hello")
 public class HelloController {
 
     //Handles requests at path /hello
@@ -42,7 +40,7 @@ public class HelloController {
 
 
     // lives at /hello/form
-    @GetMapping ("form")
+    @RequestMapping(value = "form", method={RequestMethod.GET, RequestMethod.POST})
     public String helloForm(){
         return "form";
     }
